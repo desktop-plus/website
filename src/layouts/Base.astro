@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Desktop Plus',
+  description = 'A GitHub Desktop fork with advanced functionality and Bitbucket, GitLab integration.',
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const iconHref = `${base.replace(/\/$/, '')}/icon.png`;
+---
+
+<!doctype html>
+<html lang="en" class="bg-canvas">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0d1117" />
+    <link rel="icon" type="image/png" href={iconHref} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={iconHref} />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body
+    class="min-h-dvh bg-canvas text-fg antialiased selection:bg-brand-500/30 selection:text-white"
+  >
+    <slot />
+  </body>
+</html>
