@@ -1,6 +1,6 @@
 # Desktop Plus website
 
-Marketing website for [**Desktop Plus**](https://github.com/DesktopPlus/desktop-plus).
+Marketing website for [**Desktop Plus**](https://github.com/desktop-plus/desktop-plus).
 
 > 🚧 **Under construction.** Currently a single placeholder page.
 
