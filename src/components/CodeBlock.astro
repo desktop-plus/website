@@ -1,0 +1,49 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  code: string;
+  /** Optional caption shown above the command block. */
+  label?: string;
+}
+
+const { code, label } = Astro.props;
+---
+
+<div class="not-prose">
+  {label && <p class="mb-2 text-xs font-medium text-fg-subtle">{label}</p>}
+  <div class="relative">
+    <pre
+      class="overflow-x-auto rounded-lg border border-border bg-canvas-inset py-4 pl-4 pr-14 font-mono text-[13px] leading-relaxed text-fg"><code data-code>{code}</code></pre>
+    <button
+      type="button"
+      class="copy-btn absolute right-2.5 top-2.5 grid h-8 w-8 place-items-center rounded-md border border-border bg-surface text-fg-muted transition hover:border-brand-500/50 hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400"
+      aria-label="Copy command to clipboard"
+    >
+      <Icon name="octicon:copy-16" class="icon-copy h-4 w-4" />
+      <Icon name="octicon:check-16" class="icon-check hidden h-4 w-4 text-success" />
+    </button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".copy-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const code = btn.parentElement?.querySelector<HTMLElement>("[data-code]");
+      if (!code?.textContent) return;
+      try {
+        await navigator.clipboard.writeText(code.textContent);
+      } catch {
+        return;
+      }
+      const copy = btn.querySelector(".icon-copy");
+      const check = btn.querySelector(".icon-check");
+      copy?.classList.add("hidden");
+      check?.classList.remove("hidden");
+      window.setTimeout(() => {
+        copy?.classList.remove("hidden");
+        check?.classList.add("hidden");
+      }, 1600);
+    });
+  });
+</script>

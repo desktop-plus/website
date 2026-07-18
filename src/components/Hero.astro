@@ -1,0 +1,59 @@
+---
+import { Icon } from "astro-icon/components";
+import { REPO_URL } from "../consts";
+---
+
+<section id="top" class="relative overflow-hidden">
+  <!-- Background flourishes -->
+  <div class="pointer-events-none absolute inset-0 glow" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-grid" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-8 sm:pt-24">
+    <div class="mx-auto max-w-4xl text-center">
+      <h1 class="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-6xl">
+        Your favorite Git client, <span class="text-gradient">plus the features</span> it was missing
+      </h1>
+
+      <p class="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-fg-muted sm:text-lg">
+        An up-to-date fork of GitHub Desktop that keeps the interface you know and adds commit search, multiple accounts, a commit graph, and much
+        more.
+      </p>
+
+      <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href="#install"
+          class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-900/40 transition hover:bg-brand-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 sm:w-auto"
+        >
+          <Icon name="octicon:download-16" class="h-[18px] w-[18px]" />
+          Download &amp; install
+        </a>
+        <a
+          href={REPO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-border bg-surface px-6 py-3 text-sm font-semibold text-fg transition hover:border-brand-500/60 hover:bg-surface-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 sm:w-auto"
+        >
+          <Icon name="octicon:mark-github-16" class="h-[18px] w-[18px]" />
+          View on GitHub
+        </a>
+      </div>
+
+      <p class="mt-5 text-xs text-fg-subtle">Windows · macOS · Linux &nbsp;•&nbsp; MIT-licensed</p>
+    </div>
+
+    <!-- Product screencast -->
+    <div class="relative mx-auto mt-14 max-w-5xl sm:mt-16">
+      <div class="overflow-hidden rounded-xl border border-border bg-canvas-inset shadow-2xl shadow-black/60 ring-1 ring-white/5">
+        <img
+          src="/screenshots/demo.webp"
+          alt="GH Desktop Plus in action: browsing history, searching commits, and viewing the commit graph"
+          width="1728"
+          height="948"
+          loading="eager"
+          decoding="async"
+          class="w-full"
+        />
+      </div>
+    </div>
+  </div>
+</section>

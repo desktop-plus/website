@@ -1,0 +1,102 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Category {
+  title: string;
+  icon: string; // astro-icon name, e.g. "octicon:gear-16"
+  items: string[];
+}
+
+const categories: Category[] = [
+  {
+    title: "General",
+    icon: "octicon:gear-16",
+    items: [
+      "Multiple accounts on the same host (e.g. two GitHub accounts at once)",
+      "Integration with third-party Git hosts (Bitbucket, GitLab, Codeberg): clone, create and preview pull requests, and view check status",
+      "Multiple windows: open repositories side by side, or the same repo twice",
+      "Override the external editor per repository",
+      "Preview SVG files as images in the diff view",
+      "Generate branch-name presets from an external script (e.g. ticket numbers)",
+      "Show the effective Git name and email above the commit box",
+      "All GitHub / Microsoft telemetry is fully disabled",
+      "Command-line interface for opening and cloning repositories",
+    ],
+  },
+  {
+    title: "Repositories list",
+    icon: "octicon:repo-16",
+    items: [
+      "“Pull all”: fetch and pull every repository at once",
+      "Show the current branch name next to each repository",
+      "Hide the “Recent” section",
+      "Rename and customize repository groups",
+      "Pin repositories to the top of the list",
+    ],
+  },
+  {
+    title: "Branches",
+    icon: "octicon:git-branch-16",
+    items: [
+      "Warning indicator on local-only branches (never pushed, or deleted after a PR)",
+      "Manually set the default branch used as the base for new branches",
+      "Sort branches by “Recently updated” or “Alphabetical”",
+    ],
+  },
+  {
+    title: "History",
+    icon: "octicon:history-16",
+    items: [
+      "Search commits by title, message, tag, or hash",
+      "Switch to a Commit Graph view to visualize merge history",
+      "Distinct styling for merge commits so they stand out less",
+      "Choose relative (“3 days ago”) or absolute commit dates",
+      "Double-click a single-file commit to open the file",
+      "Delete already-pushed commits and tags (advanced)",
+    ],
+  },
+  {
+    title: "Changes",
+    icon: "octicon:diff-16",
+    items: ["Permanently discard changes without using the trash, fast even with many files"],
+  },
+];
+---
+
+<section class="border-t border-border/60 bg-canvas-inset/40">
+  <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">The full list of additions</h2>
+      <p class="mt-4 text-balance text-fg-muted">Every extra feature on top of GitHub Desktop, grouped by where you'll find it.</p>
+    </div>
+
+    <div class="mt-14 grid gap-5 md:grid-cols-2">
+      {
+        categories.map((cat, i) => (
+          <div
+            class:list={[
+              "rounded-xl border border-border bg-surface/50 p-6",
+              // Let the tall "General" card span both rows on the left
+              i === 0 && "md:row-span-2",
+            ]}
+          >
+            <div class="mb-5 flex items-center gap-3">
+              <span class="grid h-9 w-9 place-items-center rounded-lg border border-brand-500/30 bg-brand-500/10 text-brand-300">
+                <Icon name={cat.icon} class="h-[18px] w-[18px]" />
+              </span>
+              <h3 class="text-lg font-semibold text-white">{cat.title}</h3>
+            </div>
+            <ul class="space-y-3">
+              {cat.items.map((item) => (
+                <li class="flex gap-3 text-sm leading-relaxed text-fg-muted">
+                  <Icon name="octicon:check-16" class="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
