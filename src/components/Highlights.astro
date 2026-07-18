@@ -71,9 +71,13 @@ const highlights: Highlight[] = [
     {
       highlights.map((h) => (
         <article class="group flex flex-col overflow-hidden rounded-xl border border-border bg-surface/60 transition hover:border-brand-500/40 hover:bg-surface">
-          <div class="flex max-h-44 items-start justify-center overflow-hidden border-b border-border/60 bg-canvas-inset">
+          <button
+            type="button"
+            class="js-lightbox-trigger flex max-h-44 cursor-zoom-in items-start justify-center overflow-hidden border-b border-border/60 bg-canvas-inset"
+            aria-label={`View ${h.title} screenshot fullscreen`}
+          >
             <img src={h.img} alt={h.alt} width={h.w} height={h.h} loading="lazy" decoding="async" class="h-auto w-full" />
-          </div>
+          </button>
           <div class="flex flex-col gap-2 p-5">
             <h3 class="text-base font-semibold text-white">{h.title}</h3>
             <p class="text-sm leading-relaxed text-fg-muted">{h.body}</p>
@@ -82,4 +86,51 @@ const highlights: Highlight[] = [
       ))
     }
   </div>
+
+  <div
+    id="lightbox"
+    class="fixed inset-0 z-50 hidden cursor-zoom-out items-center justify-center bg-black/80 p-5 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Screenshot fullscreen view"
+  >
+    <img id="lightbox-img" src="" alt="" class="max-h-full max-w-full rounded-lg shadow-2xl" />
+  </div>
 </section>
+
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement | null;
+
+  function openLightbox(img: HTMLImageElement) {
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    if (!lightbox || !lightboxImg) return;
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    lightboxImg.src = "";
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll<HTMLButtonElement>(".js-lightbox-trigger").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const img = trigger.querySelector("img");
+      if (img) openLightbox(img);
+    });
+  });
+
+  // Clicking outside the image (on the overlay backdrop) closes it.
+  lightbox?.addEventListener("click", (e) => {
+    if (e.target !== lightboxImg) closeLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lightbox && !lightbox.classList.contains("hidden")) closeLightbox();
+  });
+</script>
