@@ -71,8 +71,8 @@ const highlights: Highlight[] = [
     {
       highlights.map((h) => (
         <article class="group flex flex-col overflow-hidden rounded-xl border border-border bg-surface/60 transition hover:border-brand-500/40 hover:bg-surface">
-          <div class="flex items-center justify-center border-b border-border/60 bg-canvas-inset p-5">
-            <img src={h.img} alt={h.alt} width={h.w} height={h.h} loading="lazy" decoding="async" class="max-h-44 w-auto rounded-md" />
+          <div class="flex max-h-44 items-start justify-center overflow-hidden border-b border-border/60 bg-canvas-inset">
+            <img src={h.img} alt={h.alt} width={h.w} height={h.h} loading="lazy" decoding="async" class="h-auto w-full" />
           </div>
           <div class="flex flex-col gap-2 p-5">
             <h3 class="text-base font-semibold text-white">{h.title}</h3>

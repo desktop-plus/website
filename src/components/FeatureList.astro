@@ -9,37 +9,34 @@ interface Category {
 
 const categories: Category[] = [
   {
-    title: "General",
+    title: "General improvements",
     icon: "octicon:gear-16",
     items: [
       "Multiple accounts on the same host (e.g. two GitHub accounts at once)",
       "Integration with third-party Git hosts (Bitbucket, GitLab, Codeberg): clone, create and preview pull requests, and view check status",
       "Multiple windows: open repositories side by side, or the same repo twice",
-      "Override the external editor per repository",
-      "Preview SVG files as images in the diff view",
-      "Generate branch-name presets from an external script (e.g. ticket numbers)",
-      "Show the effective Git name and email above the commit box",
+      "Allow overriding the external editor per repository",
+      "Generate branch-name presets from an external script (e.g. append ticket number prefix)",
       "All GitHub / Microsoft telemetry is fully disabled",
-      "Command-line interface for opening and cloning repositories",
     ],
   },
   {
     title: "Repositories list",
     icon: "octicon:repo-16",
     items: [
-      "“Pull all”: fetch and pull every repository at once",
-      "Show the current branch name next to each repository",
-      "Hide the “Recent” section",
+      "“Pull all” button: fetch and pull every repository at once",
+      "Allow showing the current branch name next to each repository",
+      "Allow hiding the “Recent” section",
       "Rename and customize repository groups",
       "Pin repositories to the top of the list",
     ],
   },
   {
-    title: "Branches",
+    title: "Branches list",
     icon: "octicon:git-branch-16",
     items: [
       "Warning indicator on local-only branches (never pushed, or deleted after a PR)",
-      "Manually set the default branch used as the base for new branches",
+      "Allow manually setting a custom default branch (used as the base for new branches)",
       "Sort branches by “Recently updated” or “Alphabetical”",
     ],
   },
@@ -50,15 +47,17 @@ const categories: Category[] = [
       "Search commits by title, message, tag, or hash",
       "Switch to a Commit Graph view to visualize merge history",
       "Distinct styling for merge commits so they stand out less",
-      "Choose relative (“3 days ago”) or absolute commit dates",
       "Double-click a single-file commit to open the file",
       "Delete already-pushed commits and tags (advanced)",
     ],
   },
   {
-    title: "Changes",
+    title: "Changes / Diff",
     icon: "octicon:diff-16",
-    items: ["Permanently discard changes without using the trash, fast even with many files"],
+    items: [
+      "Preview SVG files as images in the diff view",
+      "Option to permanently discard changes without using the trash, fast even with many files",
+    ],
   },
 ];
 ---

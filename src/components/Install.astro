@@ -231,8 +231,7 @@ sudo zypper install desktop-plus`;
     return null;
   }
 
-  // Browsers rarely expose the distro, but when they do, prefer the native
-  // package over the universal Flatpak.
+  // Browsers rarely expose the distro, but when they do, prefer their package manager over the generic "apt" instructions
   function detectDistro(ua: string): string {
     if (/ubuntu|debian|mint|pop!?_?os|zorin/.test(ua)) return "apt";
     if (/fedora|red ?hat|rhel|centos/.test(ua)) return "dnf";
