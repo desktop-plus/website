@@ -46,18 +46,19 @@ import { REPO_URL } from "../consts";
       <p class="mt-5 text-xs text-fg-subtle">Windows · macOS · Linux &nbsp;•&nbsp; MIT-licensed</p>
     </div>
 
-    <!-- Product screencast -->
     <div class="relative mx-auto mt-14 max-w-5xl sm:mt-16">
       <div class="overflow-hidden rounded-xl border border-border bg-canvas-inset shadow-2xl shadow-black/60 ring-1 ring-white/5">
-        <img
-          src="/screenshots/demo.webp"
-          alt="GH Desktop Plus in action: browsing history, searching commits, and viewing the commit graph"
+        <video
+          src="/screenshots/demo.mp4"
           width="1728"
-          height="948"
-          loading="eager"
-          decoding="async"
-          class="w-full"
-        />
+          height="1000"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+          aria-label="Desktop Plus demo"
+          class="w-full"></video>
       </div>
     </div>
   </div>
